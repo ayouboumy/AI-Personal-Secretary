@@ -22,6 +22,34 @@ android {
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
+  // Auto-restore debug.keystore from debug.keystore.base64 or generate if missing
+  val debugKeystoreFile = file("${rootDir}/debug.keystore")
+  if (!debugKeystoreFile.exists()) {
+    val base64File = file("${rootDir}/debug.keystore.base64")
+    if (base64File.exists()) {
+      try {
+        val decoder = Class.forName("java.util.Base64").getMethod("getDecoder").invoke(null)
+        val decoded = decoder.javaClass.getMethod("decode", String::class.java).invoke(decoder, base64File.readText().trim()) as ByteArray
+        debugKeystoreFile.writeBytes(decoded)
+      } catch (_: Exception) {}
+    }
+    if (!debugKeystoreFile.exists()) {
+      try {
+        ProcessBuilder(
+          "keytool", "-genkeypair", "-v",
+          "-keystore", debugKeystoreFile.absolutePath,
+          "-alias", "androiddebugkey",
+          "-storepass", "android",
+          "-keypass", "android",
+          "-dname", "CN=Android Debug,O=Android,C=US",
+          "-keyalg", "RSA",
+          "-keysize", "2048",
+          "-validity", "10000"
+        ).start().waitFor()
+      } catch (_: Exception) {}
+    }
+  }
+
   // Do not remove or modify these signingConfigs. They are necessary for building, installing,
   // and updating Android apps in AI Studio.
   signingConfigs {
