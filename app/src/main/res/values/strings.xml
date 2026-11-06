@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">AI Secretary</string>
+    <string name="channel_deadlines_name">Deadlines and Reminders</string>
+    <string name="channel_deadlines_desc">Timely alerts for approaching task deadlines and milestones</string>
+    <string name="channel_briefing_name">Daily Secretary Briefing</string>
+    <string name="channel_briefing_desc">Morning briefings and evening review summaries</string>
+    <string name="nav_today">Today</string>
+    <string name="nav_inbox">Inbox</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_projects">Projects</string>
+    <string name="nav_assistant">Assistant</string>
+    <string name="capture_new">Capture</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="filter_all">All</string>
+    <string name="priority_urgent">Urgent</string>
+    <string name="priority_high">High</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_low">Low</string>
+    <string name="status_not_started">Not Started</string>
+    <string name="status_in_progress">In Progress</string>
+    <string name="status_waiting">Waiting for Response</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_cancelled">Cancelled</string>
+</resources>
